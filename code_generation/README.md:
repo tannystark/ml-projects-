@@ -1,70 +1,34 @@
 # Code Generation Model using Fine-Tuned Large Language Models (LLMs)
 
 ## Overview
-This project builds a full Code Generation system by fine-tuning a pre-trained Large Language Model (LLM) on custom-collected code data. The model is trained to translate natural language prompts into syntactically correct Python code, significantly improving accuracy over the base model.
+Built a full Code Generation system by fine-tuning a pre-trained Large Language Model (Salesforce CodeGen-350M-mono) on a custom Python dataset scraped from GitHub repositories.
 
----
-
-## Project Pipeline
-
-### 1. Data Collection
-- Used the **GitHub API** (via PyGithub) to scrape Python code from public repositories (e.g., `openai/gym`).
-- Extracted function definitions using regular expressions to focus on meaningful code snippets.
-- Built a **HuggingFace `datasets`**-formatted dataset containing code samples and associated function names.
-
-### 2. Dataset Preparation
-- Saved the code snippet dataset to disk for efficient loading.
-- Split the dataset into **90% training** and **10% testing** sets.
-
-### 3. Model and Fine-Tuning
-- Loaded a pre-trained LLM: **Salesforce `codegen-350M-mono`** model.
-- Performed **supervised fine-tuning** on the collected dataset:
-  - Tokenized the code with padding and truncation.
-  - Used HuggingFace's **Trainer API** for training.
-  - Set appropriate training arguments (batch size, epochs, save steps).
-
-### 4. Inference and Testing
-- Developed a custom function to generate code from natural language prompts using the fine-tuned model.
-- Tested outputs manually to validate code correctness and logical flow.
-
----
-
-## Sample Workflow
-
-| Step | Example |
-|:-----|:--------|
-| User Prompt | "Write a Python function to check if a number is prime." |
-| Fine-Tuned Model Output | `def is_prime(n): if n <= 1: return False for i in range(2, int(n**0.5)+1): if n % i == 0: return False return True` |
-
----
+## Approach
+- Collected Python code snippets using GitHub API (PyGithub).
+- Extracted function definitions to create a HuggingFace-compatible dataset.
+- Fine-tuned a pre-trained LLM using HuggingFace's Trainer API.
+- Designed a custom prompt generation and code decoding pipeline.
+- Tested model outputs manually to validate correctness.
 
 ## Technologies Used
-- **Python**
-- **GitHub API** (PyGithub) for data scraping
-- **HuggingFace Transformers** and **Datasets** libraries
-- **Salesforce CodeGen-350M-mono** pre-trained model
-- **PyTorch** (backend for model fine-tuning)
-
----
+- Python
+- GitHub API (PyGithub)
+- HuggingFace Transformers
+- HuggingFace Datasets
+- PyTorch
 
 ## Results
-- Fine-tuned model produced **higher-quality code** compared to the original base model.
-- Significant reduction in syntax errors and incomplete code generations.
-- Improved logical consistency and structure in generated code snippets.
-
----
+- Fine-tuned model generated cleaner, more accurate Python code from natural language prompts.
+- Reduced syntax and logical errors compared to the original pre-trained model.
 
 ## Key Learnings
-- Hands-on experience with the **full fine-tuning lifecycle**: data collection → preprocessing → model training → evaluation.
-- Importance of **prompt engineering** to guide model outputs.
-- Challenges and best practices when fine-tuning large language models on domain-specific tasks.
-
----
+- Full lifecycle experience: data collection, preprocessing, fine-tuning, evaluation.
+- Fine-tuning improves model specialization on domain-specific tasks.
+- Prompt engineering plays a critical role in guiding LLM outputs.
 
 ## Future Work
-- Expand the dataset to include code from multiple repositories and more complex domains (e.g., machine learning, web development).
-- Implement **automatic evaluation** of generated code via runtime testing or unit tests.
-- Explore larger models (e.g., CodeGen-2B, CodeGen-6B) for even better generation capabilities.
-- Experiment with **Reinforcement Learning from Human Feedback (RLHF)** to further improve output quality.
+- Extend dataset with code from multiple domains (ML, Web Dev, APIs).
+- Automate output testing using runtime evaluations.
+- Experiment with larger models and RLHF (Reinforcement Learning from Human Feedback).
 
----
+

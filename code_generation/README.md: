@@ -45,6 +45,12 @@ This project builds a full Code Generation system by fine-tuning a pre-trained L
 - **Salesforce CodeGen-350M-mono** pre-trained model
 - **PyTorch** (backend for model fine-tuning)
 
+---
+
+## Results
+- Fine-tuned model produced **higher-quality code** compared to the original base model.
+- Significant reduction in syntax errors and incomplete code generations.
+- Improved logical consistency and structure in generated code snippets.
 
 ---
 
@@ -57,6 +63,7 @@ This project builds a full Code Generation system by fine-tuning a pre-trained L
 
 ## Future Work
 - Expand the dataset to include code from multiple repositories and more complex domains (e.g., machine learning, web development).
+- Implement **automatic evaluation** of generated code via runtime testing or unit tests.
 - Explore larger models (e.g., CodeGen-2B, CodeGen-6B) for even better generation capabilities.
 - Experiment with **Reinforcement Learning from Human Feedback (RLHF)** to further improve output quality.
 

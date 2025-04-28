@@ -15,10 +15,6 @@ Build a pipeline to transcribe audio files into text and benchmark custom model 
 - AWS (EC2, S3, Athena)
 - Librosa for audio preprocessing
 
-## Results
-- Custom model achieved X% WER (word error rate), compared to Y% from AWS Transcribe.
-- Demonstrated scalable deployment for large-scale transcription.
-
 ## Key Learnings
 - Handling unstructured audio data
 - Cloud-based model deployment and data pipelines
